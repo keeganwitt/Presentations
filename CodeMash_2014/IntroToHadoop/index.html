@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introduction to Hadoop</title>
+
+        <meta name="description" content="An introduction to the Hadoop framework">
+        <meta name="author" content="Keegan Witt">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- for syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- if the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+                <section>
+                    <section>
+                        <h1>Introduction to Hadoop</h1>
+                        <small>Keegan Witt (<a href="http://twitter.com/keeganwitt">@keeganwitt</a>)</small>
+                    </section>
+                    <section>
+                        <h2>Slides @</h2>
+                        <img width="45%" height="45%" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Wikipedia_mobile_en.svg/200px-Wikipedia_mobile_en.svg.png"><br>
+                        <a href="">ADD BITLY LINK</a>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Who's the schlub?</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Agenda</h2>
+                    </section>
+                    <section>
+                        <h2>Things I'll talk about</h2>
+                        <ul>
+                            <li>Why Hadoop?</li>
+                            <li>Hadoop ecosystem</li>
+                            <li>Writing your first job</li>
+                            <li>Testing your first job</li>
+                            <li>Why not Hadoop?</li>
+                            <li>Advanced usages</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Things I won't talk about</h2>
+                        <ul>
+                            <li>Anything I lack prod experience in</li>
+                            <li>Configuring &amp; managing a Hadoop cluster</li>
+                            <li>Querying &amp; data mining (e.g. Hive, Pig, Mahout, Flume)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Why ride the elephant?</h2>
+                        <img width="60%" height="60%" src="img/elephant_rgb.jpg"><br>
+                        <small>Source: <a href="http://svn.apache.org/repos/asf/hadoop/logos/out_rgb/elephant_rgb.jpg">Hadoop</a></small>
+                    </section>
+                    <section>
+                        <h2>The problem</h2>
+                        <ul>
+                            <li>Growing data</li>
+                            <li>Disks are slow</li>
+                            <li>Need higher throughput</li>
+                            <li>More unstructured data</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Desirable features</h2>
+                        <ul>
+                            <li>Scale out, not up</li>
+                            <li>Easy to use</li>
+                            <li>Built-in backups</li>
+                            <li>Built-in fault tolerance</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Use cases</h2>
+                        <ul>
+                            <li>Text mining/pattern recognition</li>
+                            <li>Graph processing</li>
+                            <li>Collaborative filtering</li>
+                            <li>Clustering</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Who else is riding?</h2>
+                        <div style="float:left; width:50%;">
+                            <ul>
+                                <li>Amazon</li>
+                                <li>AOL</li>
+                                <li>Autodesk</li>
+                                <li>eBay</li>
+                                <li>Google*</li>
+                                <li>Groupon</li>
+                                <li>HP</li>
+                                <li>IBM</li>
+                                <li>Intel</li>
+                                <li>J.P. Morgan</li>
+                                <li>Last.fm</li>
+                            </ul>
+                        </div>
+                        <div style="float:right; width:50%;">
+                            <ul>
+                                <li>LinkedIn</li>
+                                <li>NASA</li>
+                                <li>Navteq</li>
+                                <li>NSA</li>
+                                <li>Rackspace</li>
+                                <li>Samsung</li>
+                                <li>StumbleUpon</li>
+                                <li>Twitter</li>
+                                <li>Visa</li>
+                                <li>Yahoo</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Contributors</h2>
+                        <img width="60%" height="60%" src="img/Lifetime-ecosystem-contributions-by-employer.png"><br>
+                        <small>Source: <a href="http://blog.cloudera.com/wp-content/uploads/2011/12/Lifetime-ecosystem-contributions-by-employer.png">Cloudera</a></small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What is Hadoop?</h2>
+                        <img width="60%" height="60%" src="img/big-data1.jpg"><br>
+                        <small>Source: <a href="http://www.adexchanger.com/wp-content/uploads/2012/12/big-data1.jpg">Unknown</a></small>
+                    </section>
+                    <section>
+                        <h2>Hadoop ecosystem</h2>
+                        <!-- for some reason my SVG keeps getting cut off -->
+                        <!--<object data="svg/hadoopEcosystem.svg" type="image/svg+xml"></object>-->
+                        <img width="80%" height="80%" src="svg/raster/hadoopEcosystem.png">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>HDFS</h2>
+                    </section>
+                    <section>
+                        <h2>HDFS architecture</h2>
+                        <img width="60%" height="60%" src="img/hdfsarchitecture.gif"><br>
+                        <small>Source: <a href="http://hadoop.apache.org/docs/r1.2.1/images/hdfsarchitecture.gif">Hadoop</a></small>
+                    </section>
+                    <section>
+                        <h2>HDFS architecture</h2>
+                        <img width="60%" height="60%" src="img/secondarynamenode.png"><br>
+                        <small>Source: <a href="http://3.bp.blogspot.com/-kk2kboIDhLY/T_HbVQZ-jFI/AAAAAAAAA_o/tVEqt_5VH5w/s1600/secondarynamenode.png">Computer Geek Blog</a></small>
+                    </section>
+               </section>
+
+                <section>
+                    <section>
+                        <h2>HBase</h2>
+                        <img width="70%" height="70%" src="img/equest4.jpg"><br>
+                        <small>Source: <a href="http://www.equest.com/wp-content/uploads/2013/10/equest4.jpg">eQuest</a></small>
+                   </section>
+                   <section>
+                        <h2>HBase architecture</h2>
+                        <img width="75%" height="75%" src="img/wal-flow.png"><br>
+                        <small>Source: <a href="http://1.bp.blogspot.com/_Cib_A77V54U/S2M98DazIVI/AAAAAAAAAFw/cmp0W38kWGY/s1600/wal-flow.png">Lars George's Blog</a></small>
+                    </section>
+                    <section>
+                        <h2>HBase HDFS structure</h2>
+                        <h3>HFiles</h3>
+                        <pre>
+/hbase
+    /&lt;Table&gt;
+        /&lt;Region&gt;
+            /&lt;ColumnFamiy&gt;
+                /&lt;StoreFile&gt;
+                        </pre>
+                        <h3>HLogs (WALs)</h3>
+                        <pre>
+/hbase
+    /.logs
+        /&lt;RegionServer&gt;
+            /&lt;HLog&gt;
+                        </pre>
+                    </section>
+                    <section>
+                        <h2>Logical view</h2>
+                        <img width="60%" height="60%" style="background-color:white" src="img/HBase table _ Logical view.png"><br>
+                        <small>Source: <a href="http://3.bp.blogspot.com/-lpfI86VoSSQ/UVohjH2MslI/AAAAAAAAC1A/mLmoHt7nvVc/s400/HBase+table+_+Logical+view.png">Manoj Khangaonkar's Blog</a></small>
+                    </section>
+               </section>
+
+               <section>
+                    <section>
+                        <h2>MapReduce</h2>
+                        <img width="80%" height="80%" src="img/mapreduce-all-the-things.jpg">
+                   </section>
+                   <section>
+                        <h2>Data view</h2>
+                        <img src="img/mapreduce_mapshuffle.png"><br>
+                        <small>Source: <a href="https://developers.google.com/appengine/docs/python/img/mapreduce_mapshuffle.png">Google</a></small>
+                    </section>
+                   <section>
+                        <h2>Server view</h2>
+                        <img src="img/HDP_Understanding_Hadoop_Ecosystem_1_Jan_16_2012.png"><br>
+                        <small>Source: <a href="http://docs.hortonworks.com/HDPDOCS/HDPv1.0.1.14/About_Hortonworks_Data_Platform/HDP_Understanding_Hadoop_Ecosystem_1_Jan_16_2012.png">Hortonworks</a></small>
+                    </section>
+                    <section>
+                        <h2>Physical view</h2>
+                        <img width="70%" height="70%" src="img/5468.hadoopms.jpg"><br>
+                        <small>Source: <a href="http://blogs.msdn.com/cfs-filesystemfile.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-01-41-09/5468.hadoopms.jpg">Microsoft</a></small>
+                    </section>
+                    <section>
+                        <h2>Distributing load</h2>
+                        <!-- for some reason my SVG keeps getting cut off -->
+                        <!--<object data="svg/distributingLoad.svg" type="image/svg+xml"></object>-->
+                        <img src="svg/raster/distributingLoad.png">
+                    </section>
+                    <section>
+                        <h2>Process view</h2>
+                        <img width="70%" height="70%" src="img/Hadoop1.png"><br>
+                        <small>Source: <a href="http://www.rohitmenon.com/wp-content/uploads/2013/01/Hadoop1.png">Rohit Menon's blog</a></small>
+                    </section>
+                    <section>
+                        <h2>YARN &amp; MapReduce 2</h2>
+                        <img width="70%" height="70%" src="img/yarnflow1.png"><br>
+                        <small>Source: <a href="http://hortonworks.com/wp-content/uploads/2012/08/yarnflow1.png">Hortonworks</a></small>
+                    </section>
+                    <section>
+                        <h2>Parsing</h2>
+                        <img width="70%" height="70%" src="img/hadoop-data-type-inputformat-interface.png"><br>
+                        <small>Source: <a href="http://blog.optimal.io/assets/img/hadoop-data-type-inputformat-interface.png">Optimal.io</a></small>
+                    </section>
+                    <section>
+                        <h2>Shuffle</h2>
+                        <img width="70%" height="70%" src="img/3529146683_c8247ff6db_o.png"><br>
+                        <small>Source: <a href="http://farm3.static.flickr.com/2275/3529146683_c8247ff6db_o.png">Yahoo</a></small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Deploying Hadoop</h2>
+                        <img src="img/162783.strip.sunday.gif"><br>
+                        <small>Source: <a href="http://dilbert.com/strips/comic/2012-07-29">Dilbert</a></small>
+                    </section>
+                    <section>
+                        <h2>Deploying Hadoop</h2>
+                        <h3>For Experimenting</h3>
+                        <ul>
+                            <li><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/DemoVMs/Cloudera-QuickStart-VM/cloudera_quickstart_vm.html">Cloudera QuickStart VM</a></li>
+                            <li><a href="http://hortonworks.com/products/hortonworks-sandbox/">Hortonworks Sandbox</a></li>
+                        </ul>
+                        <h3>For Real</h3>
+                        <ul>
+                            <li><a href="http://aws.amazon.com/elasticmapreduce/">Amazon EMR</a></li>
+                            <li><a href="http://www.cloudera.com/content/cloudera/en/products/cdh.html">Cloudera CDH</a></li>
+                            <li><a href="http://hortonworks.com/products/hdp-2/">Hortonworks HDP</a></li>
+                            <li><a href="http://www.mapr.com/products/mapr-editions">MapR</a></li>
+                            <li>From distribution's packages</li>
+                            <li>From source</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Configuring Hadoop</h2>
+                        <h3>Defaults</h3>
+                        <ul>
+                            <li>core-site.xml</li>
+                            <li>hdfs-site.xml</li>
+                            <li>mapred-site.xml</li>
+                            <li>hbase-site.xml</li>
+                            <li>hive-site.xml</li>
+                            <li>yarn-site.xml</li>
+                        </ul>
+                        <h3>Overriding</h3>
+                        <pre><code data-trim>
+Configuration conf = new Configuration();
+conf.set("&lt;optionKey&gt;", "&lt;optionValue&gt;");
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Writing your first job</h2>
+                        <img width="70%" height="70%" src="img/cloud_130.jpg"><br>
+                        <small>Source: <a href="http://www.cloudtweaks.com/wp-content/uploads/2013/01/cloud_130.jpg">CloudTweaks</a></small>
+                    </section>
+                    <section>
+                        <h2>Driver</h2>
+                        <pre><code data-trim>
+public class WordCount_Driver {
+    public static void main(String[] args) throws Exception {
+        Configuration conf = new Configuration();
+        Job job = new Job(conf, "wordcount");
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        job.setMapperClass(WordCount_Mapper.class);
+        job.setReducerClass(WordCount_Reducer.class);
+        job.setInputFormatClass(TextInputFormat.class);
+        job.setOutputFormatClass(TextOutputFormat.class);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="http://wiki.apache.org/hadoop/WordCount">Hadoop</a> (slightly modified)</small>
+                    </section>
+                    <section>
+                        <h2>Mapper</h2>
+                        <pre><code data-trim>
+public class WordCount_Mapper
+  extends Mapper&lt;LongWritable, Text, Text, IntWritable&gt; {
+    private final static IntWritable one = new IntWritable(1);
+    private Text word = new Text();
+
+    public void map(LongWritable key, Text value, Context context)
+      throws IOException, InterruptedException {
+        String line = value.toString();
+        StringTokenizer tokenizer = new StringTokenizer(line);
+        while (tokenizer.hasMoreTokens()) {
+            word.set(tokenizer.nextToken());
+            context.write(word, one);
+        }
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="http://wiki.apache.org/hadoop/WordCount">Hadoop</a></small>
+                    </section>
+                    <section>
+                        <h2>Reducer</h2>
+                        <pre><code data-trim>
+public class WordCount_Reducer
+  extends Reducer&lt;Text, IntWritable, Text, IntWritable&gt; {
+  public void reduce(Text key, Iterable&lt;IntWritable&gt; values,
+      Context context) throws IOException, InterruptedException {
+        int sum = 0;
+        for (IntWritable val : values) {
+            sum += val.get();
+        }
+        context.write(key, new IntWritable(sum));
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="http://wiki.apache.org/hadoop/WordCount">Hadoop</a></small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Testing your first job</h2>
+                        <img width="45%" height="45%"  src="img/8054.image_thumb_35C6E986.png">
+                    </section>
+                    <section>
+                        <h2>Map test</h2>
+                        <pre><code data-trim>
+public class WordCount_Mapper_Test {
+    private MapDriver&lt;LongWritable, Text, Text, IntWritable&gt; mapDriver;
+
+    @Before
+    public void setUp() {
+        WordCount_Mapper mapper = new WordCount_Mapper();
+        mapDriver = new MapDriver&lt;LongWritable, Text, Text, IntWritable&gt;();
+        mapDriver.setMapper(mapper);
+    }
+
+    @Test
+    public void testMapper() {
+        mapDriver.withInput(new LongWritable(1), new Text("cat cat dog"))
+            .withOutput(new Text("cat"), new IntWritable(1))
+            .withOutput(new Text("cat"), new IntWritable(1))
+            .withOutput(new Text("dog"), new IntWritable(1))
+            .runTest();
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="https://cwiki.apache.org/confluence/display/MRUNIT/Testing+Word+Count">MRUnit</a> (slightly modified)</small>
+                    </section>
+                    <section>
+                        <h2>Reduce test</h2>
+                        <pre><code data-trim>
+public class WordCount_Reducer_Test {
+    private ReduceDriver&lt;Text, IntWritable, Text, IntWritable&gt; reduceDriver;
+
+    @Before
+    public void setUp() {
+        WordCount_Reducer reducer = new WordCount_Reducer();
+        reduceDriver = new ReduceDriver&lt;Text, IntWritable, Text, IntWritable&gt;();
+        reduceDriver.setReducer(reducer);
+    }
+
+    @Test
+    public void testReducer() {
+        List&lt;IntWritable&gt; catValues = new ArrayList&lt;IntWritable&gt;();
+        catValues.add(new IntWritable(1));
+        catValues.add(new IntWritable(1));
+        List&lt;IntWritable&gt; dogValues = new ArrayList&lt;IntWritable&gt;();
+        dogValues.add(new IntWritable(1));
+        reduceDriver.withInput(new Text("cat"), catValues)
+            .withInput(new Text("dog"), dogValues)
+            .withOutput(new Text("cat"), new IntWritable(2))
+            .withOutput(new Text("dog"), new IntWritable(1))
+            .runTest();
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="https://cwiki.apache.org/confluence/display/MRUNIT/Testing+Word+Count">MRUnit</a> (slightly modified)</small>
+                    </section>
+                    <section>
+                        <h2>MapReduce test</h2>
+                        <pre><code data-trim>
+public class WordCount_MapReduce_Test {
+    private MapReduceDriver&lt;LongWritable, Text, Text, IntWritable, Text, IntWritable&gt; mapReduceDriver;
+
+    @Before
+    public void setUp() {
+        WordCount_Mapper mapper = new WordCount_Mapper();
+        WordCount_Reducer reducer = new WordCount_Reducer();
+        mapReduceDriver = new MapReduceDriver&lt;LongWritable, Text, Text, IntWritable, Text, IntWritable&gt;();
+        mapReduceDriver.setMapper(mapper);
+        mapReduceDriver.setReducer(reducer);
+    }
+
+    @Test
+    public void testMapReduce() {
+        mapReduceDriver.withInput(new LongWritable(1), new Text("cat cat dog"))
+            .addOutput(new Text("cat"), new IntWritable(2))
+            .addOutput(new Text("dog"), new IntWritable(1))
+            .runTest();
+    }
+}
+                        </code></pre>
+                        <small>Source: <a href="https://cwiki.apache.org/confluence/display/MRUNIT/Testing+Word+Count">MRUnit</a> (slightly modified)</small>
+                    </section>
+                    <section>
+                        <h2>What about TDD?</h2>
+                    </section>
+                    <section>
+                        <h2>What about system testing?</h2>
+                        <ul>
+                            <li><a href ="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CLIMiniCluster.html">MiniCluster</a></li>
+                            <li><a href="http://svn.apache.org/repos/asf/hbase/trunk/hbase-server/src/test/java/org/apache/hadoop/hbase/HBaseTestingUtility.java">HBaseTestingUtility</a> (Sematext <a href="http://blog.sematext.com/2010/08/30/hbase-case-study-using-hbasetestingutility-for-local-testing-development/">example</a>)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Demo</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Why NOT ride the elephant?</h2>
+                        <img width="40%" height="40%" src="img/6a00d8341d3df553ef0128764d3aef970c-pi.png"><br>
+                        <small>Source: <a href="http://geekandpoke.typepad.com/.a/6a00d8341d3df553ef0128764d3aef970c-pi">geek &amp; poke</a></small>
+                    </section>
+                    <section>
+                        <h2>Why NOT ride the elephant?</h2>
+                        <ul>
+                            <li>Request/response model</li>
+                            <li>External clients</li>
+                            <li>Not much data</li>
+                            <li>Young</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Beyond word count</h2>
+                    </section>
+                    <section>
+                        <h2>Dependencies</h2>
+                        <ul>
+                            <li>HADOOP_CLASSPATH</li>
+                            <li>Überjar</li>
+                            <li>-libjars</li>
+                        </ul>
+                        <h2>Classpath ordering</h2>
+                        <ul>
+                            <li>HADOOP_USER_CLASSPATH_FIRST</li>
+                            <li>mapreduce.task.classpath.first -&gt; true</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Custom counters</h2>
+                        <pre><code data-trim>
+public enum KeegansCounters {
+    FOO,
+    BAR;
+}
+// ...
+context.getCounter(KeegansCounters.FOO).increment(1);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Job flows</h2>
+                        <ul>
+                            <li><a href="http://hadoop.apache.org/docs/current/api/org/apache/hadoop/mapreduce/lib/chain/ChainMapper.html">ChainMapper</a> &amp; <a href="http://hadoop.apache.org/docs/current/api/org/apache/hadoop/mapreduce/lib/chain/ChainReducer.html">ChainReducer</a></li>
+                            <li>Sequentially in main()</li>
+                            <li>Use JobControl in main()</li>
+                            <li>Multiple Hadoop jar commands</li>
+                            <li>Oozie</li>
+                            <li>Azkaban</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Sqoop process overview</h2>
+                        <img width="50%" height="50%" src="img/HadoopSqoop_image003.png"><br>
+                        <small>Source: <a href="http://www.devx.com/imagesvr_ce/7872/HadoopSqoop_image003.png">DevX</a></small>
+                    </section>
+                    <section>
+                        <h2>Sqooping data from RDBMSs</h2>
+                        <pre>
+sqoop import \
+--connect jdbc:mysql://foo.com/db \
+--table orders \
+--fields-terminated-by '\t' \
+--lines-terminated-by '\n'
+                        </pre>
+                    </section>
+                    <section>
+                        <h2>Sqooping data into RDBMSs</h2>
+                        <pre>
+sqoop export \
+--connect jdbc:mysql://foo.com/db \
+--table bar \
+--export-dir /hdfs_path/bar_data
+                        </pre>
+                    </section>
+                    <section>
+                        <h2>Compressing intermediate data</h2>
+                        <h3></h3>
+                        <pre><code data-trim>
+mapred.compress.map.output -&gt; true
+mapred.map.output.compression.codec -&gt; com.hadoop.compression.lzo.SnappyCodec
+                        </code></pre>
+                        <h3>Compressing output</h3>
+                        <pre><code data-trim>
+FileOutputFormat.setCompressOutput(job, true);
+FileOutputFormat.setOutputCompressorClass(job, BZip2Codec.class);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Skipping bad records</h2>
+                    </section>
+                    <section>
+                        <h2>Profiling jobs</h2>
+                        <ul>
+                            <li>HPROF</li>
+                            <li>Trial and error</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Distributed cache</h2>
+                        <h3>Commandline (using <a href="http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/util/Tool.html">Tool</a> interface)</h3>
+                        <ul>
+                            <li>-files</li>
+                            <li>-archives</li>
+                            <li>-libjars</li>
+                        </ul>
+                        <h3>Programmatically</h3>
+                        <pre><code data-trim>
+public void addCacheFile(URI uri)
+public void addCacheArchive(URI uri)
+public void addFileToClassPath(Path file)
+public void addArchiveToClassPath(Path archive)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Secondary sorting</h2>
+                        <h3>Steps</h3>
+                        <ul>
+                            <li>Change key to composite</li>
+                            <li>Create Partitioner and grouping Comparator on original key</li>
+                            <li>Create sort Comparator on composite key</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Secondary sorting example</h2>
+                        <pre><code data-trim>
+job.setPartitionerClass(FirstPartitioner.class);
+job.setSortComparatorClass(KeyComparator.class);
+job.setGroupingComparatorClass(GroupComparator.class);
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Resources</h2>
+                    </section>
+                    <section>
+                        <h2>Books</h2>
+                        <a href="http://www.amazon.com/dp/1449311520/"><img src="img/0636920021773_lrg.jpg" width="20%" height="20%"></a>
+                        <a href="http://hbase.apache.org/book.html"><img src="img/hbase_logo.png" width="25%" height="25%" style="background-color:gray"></a>
+                        <a href="http://www.amazon.com/dp/1449327052/"><img src="img/0636920025085_lrg.jpg" width="20%" height="20%"></a>
+                    </section>
+                    <section>
+                        <h2>Links</h2>
+                        <div style="float:left; width:50%;">
+                            <ul>
+                                <li><a href="http://hadoop.apache.org/">http://hadoop.apache.org/</a></li>
+                                <li><a href="http://mrunit.apache.org/">http://mrunit.apache.org/</a></li>
+                                <li><a href="http://hbase.apache.org/">http://hbase.apache.org/</a></li>
+                                <li><a href="http://avro.apache.org/">http://avro.apache.org/</a></li>
+                                <li><a href="http://www.cascading.org/">http://www.cascading.org/</a></li>
+                                <li><a href="http://pig.apache.org/">http://pig.apache.org/</a></li>
+                                <li><a href="http://hive.apache.org/">http://hive.apache.org/</a></li>
+                                <li><a href="http://flume.apache.org/">http://flume.apache.org/</a></li>
+                            </ul>
+                        </div>
+                        <div style="float:right; width:50%;">
+                            <ul>
+                                <li><a href="http://oozie.apache.org/">http://oozie.apache.org/</a></li>
+                                <li><a href="https://github.com/azkaban/azkaban">https://github.com/azkaban/azkaban</a></li>
+                                <li><a href="http://crunch.apache.org/">http://crunch.apache.org/</a></li>
+                                <li><a href="http://spark.incubator.apache.org/">http://spark.incubator.apache.org/</a></li>
+                                <li><a href="http://developer.yahoo.com/hadoop/tutorial/">http://developer.yahoo.com/hadoop/tutorial/</a></li>
+                                <li><a href="http://sortbenchmark.org/">http://sortbenchmark.org/</a></li>
+                                <li><a href="https://github.com/cloudera/impala">https://github.com/cloudera/impala</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Questions?</h2>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+            // full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+        </script>
+
+    </body>
+</html>

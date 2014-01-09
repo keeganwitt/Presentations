@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <g>
+        <rect x="0" y="0" rx="20" ry="20" width="100" height="257" fill="gray" />
+        <text x="40" y="170" font-family="sans-serif" font-size="28" fill="white" transform="rotate(-90 40 170)">Oozie</text>
+        <text x="70" y="170" font-family="sans-serif" font-size="18" fill="white" transform="rotate(-90 70 170)">Workflows</text>
+    </g>
+    <g>
+        <rect x="0" y="263" rx="20" ry="20" width="100" height="257" fill="gray" />
+        <text x="40" y="440" font-family="sans-serif" font-size="28" fill="white" transform="rotate(-90 40 440)">Azkaban</text>
+        <text x="70" y="430" font-family="sans-serif" font-size="18" fill="white" transform="rotate(-90 70 430)">Workflows</text>
+    </g>
+    <g>
+        <rect x="105" y="105" rx="20" ry="20" width="100" height="415" fill="gray" />
+        <text x="150" y="380" font-family="sans-serif" font-size="28" fill="white" transform="rotate(-90 150 380)">Zookeeper</text>
+        <text x="180" y="370" font-family="sans-serif" font-size="18" fill="white" transform="rotate(-90 180 370)">Coordination</text>
+    </g>
+    <g>
+        <rect x="210" y="0" rx="20" ry="20" width="165" height="100" fill="gray" />
+        <text x="255" y="50" font-family="sans-serif" font-size="28" fill="white">Impala</text>
+        <text x="275" y="80" font-family="sans-serif" font-size="18" fill="white">SQL</text>
+    </g>
+    <g>
+        <rect x="210" y="105" rx="20" ry="20" width="165" height="100" fill="gray" />
+        <text x="270" y="155" font-family="sans-serif" font-size="28" fill="white">Hive</text>
+        <text x="280" y="185" font-family="sans-serif" font-size="18" fill="white">SQL</text>
+    </g>
+    <line x1="385" y1="105" x2="385" y2="205" style="stroke:#4D4D4D;stroke-width:4" />
+    <g>
+        <rect x="395" y="105" rx="20" ry="20" width="160" height="100" fill="gray" />
+        <text x="455" y="155" font-family="sans-serif" font-size="28" fill="white">Pig</text>
+        <text x="435" y="185" font-family="sans-serif" font-size="18" fill="white">Dataflows</text>
+    </g>
+    <g>
+        <rect x="560" y="105" rx="20" ry="20" width="170" height="100" fill="gray" />
+        <text x="600" y="155" font-family="sans-serif" font-size="28" fill="white">Mahout</text>
+        <text x="575" y="185" font-family="sans-serif" font-size="18" fill="white">Machine Learning</text>
+    </g>
+    <g>
+        <rect x="210" y="210" rx="20" ry="20" width="530" height="100" fill="darkgreen" />
+        <text x="400" y="260" font-family="sans-serif" font-size="28" fill="white">MapReduce</text>
+        <text x="360" y="290" font-family="sans-serif" font-size="18" fill="white">Distributed computing platform</text>
+    </g>
+    <g>
+        <rect x="210" y="315" rx="20" ry="20" width="300" height="100" fill="gray" />
+        <text x="350" y="360" font-family="sans-serif" font-size="28" fill="white">HBase</text>
+        <text x="320" y="390" font-family="sans-serif" font-size="18" fill="white">NoSQL data store</text>
+    </g>
+    <g>
+        <rect x="515" y="315" rx="20" ry="20" width="225" height="100" fill="darkgreen" />
+        <text x="595" y="360" font-family="sans-serif" font-size="28" fill="white">YARN</text>
+        <text x="535" y="390" font-family="sans-serif" font-size="18" fill="white">Resource Management</text>
+    </g>
+    <g>
+        <rect x="210" y="420" rx="20" ry="20" width="530" height="100" fill="darkgreen" />
+        <text x="440" y="470" font-family="sans-serif" font-size="28" fill="white">HDFS</text>
+        <text x="390" y="500" font-family="sans-serif" font-size="18" fill="white">Distributed file system</text>
+    </g>
+    <g>
+        <rect x="210" y="315" rx="20" ry="20" width="100" height="205" fill="darkgray" opacity="0.75" />
+        <text x="260" y="440" font-family="sans-serif" font-size="28" fill="white" transform="rotate(-90 260 440)">Avro</text>
+        <text x="290" y="480" font-family="sans-serif" font-size="18" fill="white" transform="rotate(-90 290 480)">Data serialization</text>
+    </g>
+    <g>
+        <rect x="780" y="420" width="220" height="100" style="stroke:black;stroke-width:3;fill-opacity:0.0" />
+        <text x="800" y="450" font-family="sans-serif" font-size="22" font-weight="bold">Data Ingest Tools</text>
+        <text x="820" y="480" font-family="sans-serif" font-size="22">* Sqoop</text>
+        <text x="820" y="510" font-family="sans-serif" font-size="22">* Flume</text>
+    </g>
+</svg>
