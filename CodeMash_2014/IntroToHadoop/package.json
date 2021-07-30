@@ -8,7 +8,7 @@
   "module": "dist/reveal.esm.js",
   "license": "MIT",
   "scripts": {
-    "test": "gulp test",
+    "lint": "gulp eslint",
     "start": "gulp serve",
     "build": "gulp build"
   },
